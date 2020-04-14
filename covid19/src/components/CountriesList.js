@@ -8,6 +8,7 @@ class CountriesList extends React.Component {
   }
 
   render() {
+    console.log(this.props.countries);
     return (
       <div>
         <div className="ui grid">
@@ -39,7 +40,26 @@ class CountriesList extends React.Component {
             </tr>
           </thead>
 
-          <tbody></tbody>
+          {this.props.countries ? (
+            <tbody>
+              {this.props.countries.map(country => {
+                return (
+                  <tr key={country.countryInfo._id}>
+                    <td data-label="Country">{country.country}</td>
+                    <td data-label="Total Cases">{country.cases}</td>
+                    <td data-label="New Cases">{country.todayCases}</td>
+                    <td data-label="Total Deaths">{country.deaths}</td>
+                    <td data-label="New Deaths">{country.todayDeaths}</td>
+                    <td data-label="Active Cases">{country.active}</td>
+                    <td data-label="Total Tests">{country.tests}</td>
+                    <td data-label="New Tests">To be calculated</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          ) : (
+            <div>Loading...</div>
+          )}
         </table>
       </div>
     );

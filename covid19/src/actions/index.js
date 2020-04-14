@@ -6,7 +6,16 @@ export const fetchCountries = () => dispatch => {
     .get("https://corona.lmao.ninja/countries/")
     .then(res => {
       console.log(res);
-      dispatch({ type: FETCH_COUNTRIES, payload: res.data });
+      const response = res.data.sort((a, b) => {
+        if (a.cases > b.cases) {
+          return -1;
+        } else if (a.cases < b.cases) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      dispatch({ type: FETCH_COUNTRIES, payload: response });
     })
     .catch(err => console.log(err));
 };
