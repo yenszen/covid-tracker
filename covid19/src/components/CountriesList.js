@@ -3,36 +3,52 @@ import { connect } from "react-redux";
 import { fetchCountries } from "../actions";
 
 class CountriesList extends React.Component {
+  state = {
+    searchTerm: "",
+    searchResults: []
+  };
+
   componentDidMount() {
     this.props.fetchCountries();
+    this.setState({ searchResults: this.props.countries });
   }
 
   render() {
-    console.log(this.props.countries);
+    console.log("searchResults", this.state.searchResults);
     return (
       <div>
-        <div className="ui search">
-          <div className="ui icon input">
-            <input
-              className="prompt"
-              type="text"
-              placeholder="Search country..."
-            />
-            <i className="search icon" />
+        <form>
+          <div className="ui search">
+            <div className="ui icon input">
+              <input
+                className="prompt"
+                type="text"
+                placeholder="Search country..."
+                value={this.state.searchTerm}
+                onChange={e =>
+                  this.setState({
+                    searchTerm: e.target.value.toLowerCase()
+                  })
+                }
+              />
+              <i className="search icon" />
+            </div>
           </div>
-        </div>
+        </form>
 
         <table className="ui inverted blue celled table">
           <thead>
             <tr>
               <th>Country</th>
-              <th>Total Cases</th>
+              <th>
+                Total Cases <i className="sort amount down icon" />
+              </th>
               <th>New Cases</th>
               <th>Total Deaths</th>
               <th>New Deaths</th>
               <th>Active Cases</th>
               <th>Total Tests</th>
-              <th>New Tests</th>
+              <th>Case/Test Ratio</th>
             </tr>
           </thead>
 
@@ -55,8 +71,16 @@ class CountriesList extends React.Component {
                     <td data-label="Total Deaths">{country.deaths}</td>
                     <td data-label="New Deaths">{country.todayDeaths}</td>
                     <td data-label="Active Cases">{country.active}</td>
-                    <td data-label="Total Tests">{country.tests}</td>
-                    <td data-label="New Tests">To be calculated</td>
+                    <td data-label="Total Tests">
+                      {country.tests ? country.tests : "N/A"}
+                    </td>
+                    <td data-label="Case/Test Ratio">
+                      {country.tests
+                        ? `${Math.round(
+                            (country.cases / country.tests) * 100
+                          )}%`
+                        : "N/A"}
+                    </td>
                   </tr>
                 );
               })}

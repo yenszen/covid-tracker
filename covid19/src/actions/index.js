@@ -6,7 +6,7 @@ export const fetchCountries = () => dispatch => {
     return axios
       .get("https://corona.lmao.ninja/countries/")
       .then(res => {
-        console.log(res);
+        console.log("fetchCountries", res);
         const response = res.data.sort((a, b) => {
           if (a.cases > b.cases) {
             return -1;
