@@ -56,6 +56,9 @@ class CountriesList extends React.Component {
           {this.props.countries ? (
             <tbody>
               {this.props.countries.map(country => {
+                const deathRate = Math.round(
+                  (country.deaths / country.cases) * 100
+                );
                 return (
                   <tr key={country.countryInfo._id}>
                     <td data-label="Country">
@@ -82,8 +85,15 @@ class CountriesList extends React.Component {
                           )}%`
                         : "N/A"}
                     </td>
-                    <td data-label="Death Rate">
-                      {`${Math.round((country.deaths / country.cases) * 100)}%`}
+                    <td
+                      data-label="Death Rate"
+                      style={
+                        deathRate > 3
+                          ? { backgroundColor: "#d44000" }
+                          : { backgroundColor: "green" }
+                      }
+                    >
+                      {`${deathRate}%`}
                     </td>
                   </tr>
                 );

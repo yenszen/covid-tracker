@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_COUNTRIES } from "./types";
+import { FETCH_COUNTRIES, FETCH_OVERALL } from "./types";
 
 export const fetchCountries = () => dispatch => {
   setTimeout(() => {
@@ -20,4 +20,14 @@ export const fetchCountries = () => dispatch => {
       })
       .catch(err => console.log(err));
   }, 1000);
+};
+
+export const fetchOverall = () => dispatch => {
+  return axios
+    .get("https://corona.lmao.ninja/all")
+    .then(res => {
+      console.log("fetchOverall", res);
+      dispatch({ type: FETCH_OVERALL, payload: res.data });
+    })
+    .catch(err => console.log(err));
 };
