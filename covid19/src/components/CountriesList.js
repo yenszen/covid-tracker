@@ -11,22 +11,18 @@ class CountriesList extends React.Component {
     console.log(this.props.countries);
     return (
       <div>
-        <div className="ui grid">
-          <button className="ui blue button">Today</button>
-          <button className="ui teal button">Yesterday</button>
-          <div className="ui search">
-            <div className="ui icon input">
-              <input
-                className="prompt"
-                type="text"
-                placeholder="Search country..."
-              />
-              <i className="search icon" />
-            </div>
+        <div className="ui search">
+          <div className="ui icon input">
+            <input
+              className="prompt"
+              type="text"
+              placeholder="Search country..."
+            />
+            <i className="search icon" />
           </div>
         </div>
 
-        <table className="ui celled table">
+        <table className="ui inverted blue celled table">
           <thead>
             <tr>
               <th>Country</th>
@@ -45,7 +41,15 @@ class CountriesList extends React.Component {
               {this.props.countries.map(country => {
                 return (
                   <tr key={country.countryInfo._id}>
-                    <td data-label="Country">{country.country}</td>
+                    <td data-label="Country">
+                      {country.country}{" "}
+                      <img
+                        className="ui mini right floated image"
+                        src={country.countryInfo.flag}
+                        alt="Nation flag"
+                      />
+                    </td>
+
                     <td data-label="Total Cases">{country.cases}</td>
                     <td data-label="New Cases">{country.todayCases}</td>
                     <td data-label="Total Deaths">{country.deaths}</td>
@@ -58,7 +62,15 @@ class CountriesList extends React.Component {
               })}
             </tbody>
           ) : (
-            <div>Loading...</div>
+            <tbody>
+              <div colSpan="8" className="ui icon message">
+                <i className="notched circle loading icon"></i>
+                <div className="content">
+                  <div className="header">Just one second</div>
+                  <p>We're fetching that latest data on Covid-19 for you.</p>
+                </div>
+              </div>
+            </tbody>
           )}
         </table>
       </div>
