@@ -4,7 +4,7 @@ import { FETCH_COUNTRIES, FETCH_OVERALL } from "./types";
 export const fetchCountries = () => dispatch => {
   setTimeout(() => {
     return axios
-      .get("https://corona.lmao.ninja/countries/")
+      .get("https://corona.lmao.ninja/v2/countries/")
       .then(res => {
         console.log("fetchCountries", res);
         const response = res.data.sort((a, b) => {
