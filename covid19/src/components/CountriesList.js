@@ -36,7 +36,7 @@ class CountriesList extends React.Component {
           </div>
         </form>
 
-        <table className="ui inverted blue celled table">
+        <table className="ui inverted blue celled unstackable table">
           <thead>
             <tr>
               <th>Country</th>
@@ -85,16 +85,7 @@ class CountriesList extends React.Component {
                           )}%`
                         : "N/A"}
                     </td>
-                    <td
-                      data-label="Death Rate"
-                      style={
-                        deathRate > 3
-                          ? { backgroundColor: "#d44000" }
-                          : { backgroundColor: "green" }
-                      }
-                    >
-                      {`${deathRate}%`}
-                    </td>
+                    <td data-label="Death Rate">{`${deathRate}%`}</td>
                   </tr>
                 );
               })}
