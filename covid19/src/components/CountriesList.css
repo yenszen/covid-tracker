@@ -1,0 +1,9 @@
+.ui.table {
+  border: none;
+}
+
+.ui.table thead tr th {
+  position: sticky !important;
+  top: 0;
+  z-index: 2;
+}

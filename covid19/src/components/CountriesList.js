@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchCountries } from "../actions";
+import "./CountriesList.css";
 
 class CountriesList extends React.Component {
   state = {
@@ -36,7 +37,7 @@ class CountriesList extends React.Component {
           </div>
         </form>
 
-        <table className="ui inverted blue celled unstackable table">
+        <table className="ui celled unstackable table">
           <thead>
             <tr>
               <th>Country</th>
@@ -54,7 +55,7 @@ class CountriesList extends React.Component {
           </thead>
 
           {this.props.countries ? (
-            <tbody>
+            <tbody className="ui inverted blue table">
               {this.props.countries.map(country => {
                 const deathRate = Math.round(
                   (country.deaths / country.cases) * 100
