@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchCountries } from "../actions";
+import "./CountriesList.css";
 
 class CountriesList extends React.Component {
   state = {
@@ -10,11 +11,26 @@ class CountriesList extends React.Component {
 
   componentDidMount() {
     this.props.fetchCountries();
-    this.setState({ searchResults: this.props.countries });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.countries !== this.props.countries) {
+      this.setState({ searchResults: this.props.countries });
+    }
+
+    if (prevState.searchTerm !== this.state.searchTerm) {
+      this.setState({
+        searchResults: this.props.countries.filter(country =>
+          country.country
+            .toLowerCase()
+            .includes(this.state.searchTerm.toLowerCase())
+        )
+      });
+    }
   }
 
   render() {
-    console.log("searchResults", this.state.searchResults);
+    console.log("searchTerm", this.state.searchTerm);
     return (
       <div>
         <form>
@@ -25,18 +41,14 @@ class CountriesList extends React.Component {
                 type="text"
                 placeholder="Search country..."
                 value={this.state.searchTerm}
-                onChange={e =>
-                  this.setState({
-                    searchTerm: e.target.value.toLowerCase()
-                  })
-                }
+                onChange={e => this.setState({ searchTerm: e.target.value })}
               />
               <i className="search icon" />
             </div>
           </div>
         </form>
 
-        <table className="ui inverted blue celled unstackable table">
+        <table className="ui celled unstackable table">
           <thead>
             <tr>
               <th>Country</th>
@@ -54,8 +66,8 @@ class CountriesList extends React.Component {
           </thead>
 
           {this.props.countries ? (
-            <tbody>
-              {this.props.countries.map(country => {
+            <tbody className="ui inverted blue unstackable table">
+              {this.state.searchResults.map(country => {
                 const deathRate = Math.round(
                   (country.deaths / country.cases) * 100
                 );
