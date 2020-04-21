@@ -48,13 +48,11 @@ class CountriesList extends React.Component {
           </div>
         </form>
 
-        <table className="ui celled unstackable table">
+        <table className="ui sortable celled unstackable table">
           <thead>
             <tr>
               <th>Country</th>
-              <th>
-                Total Cases <i className="sort amount down icon" />
-              </th>
+              <th>Total Cases</th>
               <th>New Cases</th>
               <th>Total Deaths</th>
               <th>New Deaths</th>
@@ -104,13 +102,17 @@ class CountriesList extends React.Component {
             </tbody>
           ) : (
             <tbody>
-              <div colSpan="8" className="ui icon message">
-                <i className="notched circle loading icon"></i>
-                <div className="content">
-                  <div className="header">Just one second</div>
-                  <p>We're fetching that latest data on Covid-19 for you.</p>
-                </div>
-              </div>
+              <tr>
+                <td colSpan="9">
+                  <div className="ui icon message">
+                    <i className="notched circle loading icon"></i>
+                    <div className="content">
+                      <div className="header">Just one second</div>
+                      <p>Fetching the latest data on Covid-19...</p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           )}
         </table>
