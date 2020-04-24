@@ -30,7 +30,7 @@ class CountriesList extends React.Component {
   }
 
   render() {
-    console.log("searchTerm", this.state.searchTerm);
+    // console.log("searchTerm", this.state.searchTerm);
     return (
       <div>
         <form>
@@ -64,7 +64,7 @@ class CountriesList extends React.Component {
           </thead>
 
           {this.props.countries ? (
-            <tbody className="ui inverted blue unstackable table">
+            <tbody className="ui inverted black unstackable table">
               {this.state.searchResults.map(country => {
                 const deathRate = Math.round(
                   (country.deaths / country.cases) * 100
