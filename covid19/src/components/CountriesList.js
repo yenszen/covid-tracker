@@ -59,8 +59,8 @@ class CountriesList extends React.Component {
               <th className="mobile">New Deaths</th>
               <th className="mobile">Active Cases</th>
               <th className="mobile">Total Tests</th>
-              <th className="mobile">Case/Test Ratio</th>
-              <th className="mobile">Death Rate</th>
+              <th className="tablet">Case/Test Ratio</th>
+              <th className="tablet">Death Rate</th>
             </tr>
           </thead>
 
@@ -95,7 +95,7 @@ class CountriesList extends React.Component {
                     <td data-label="Total Tests" className="mobile">
                       {country.tests ? country.tests : "N/A"}
                     </td>
-                    <td data-label="Case/Test Ratio" className="mobile">
+                    <td data-label="Case/Test Ratio" className="tablet">
                       {country.tests
                         ? `${Math.round(
                             (country.cases / country.tests) * 100
@@ -104,7 +104,7 @@ class CountriesList extends React.Component {
                     </td>
                     <td
                       data-label="Death Rate"
-                      className="mobile"
+                      className="tablet"
                     >{`${deathRate}%`}</td>
                   </tr>
                 );
