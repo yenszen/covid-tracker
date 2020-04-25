@@ -19,18 +19,19 @@ class CountriesList extends React.Component {
     }
 
     if (prevState.searchTerm !== this.state.searchTerm) {
+      const results = this.props.countries.filter(country =>
+        country.country
+          .toLowerCase()
+          .includes(this.state.searchTerm.toLowerCase())
+      );
+
       this.setState({
-        searchResults: this.props.countries.filter(country =>
-          country.country
-            .toLowerCase()
-            .includes(this.state.searchTerm.toLowerCase())
-        )
+        searchResults: results
       });
     }
   }
 
   render() {
-    // console.log("searchTerm", this.state.searchTerm);
     return (
       <div>
         <form>
