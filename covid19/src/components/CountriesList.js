@@ -54,13 +54,13 @@ class CountriesList extends React.Component {
             <tr>
               <th>Country</th>
               <th>Total Cases</th>
-              <th>New Cases</th>
+              <th className="mobile">New Cases</th>
               <th>Total Deaths</th>
-              <th>New Deaths</th>
-              <th>Active Cases</th>
-              <th>Total Tests</th>
-              <th>Case/Test Ratio</th>
-              <th>Death Rate</th>
+              <th className="mobile">New Deaths</th>
+              <th className="mobile">Active Cases</th>
+              <th className="mobile">Total Tests</th>
+              <th className="mobile">Case/Test Ratio</th>
+              <th className="mobile">Death Rate</th>
             </tr>
           </thead>
 
@@ -82,21 +82,30 @@ class CountriesList extends React.Component {
                     </td>
 
                     <td data-label="Total Cases">{country.cases}</td>
-                    <td data-label="New Cases">{country.todayCases}</td>
+                    <td data-label="New Cases" className="mobile">
+                      {country.todayCases}
+                    </td>
                     <td data-label="Total Deaths">{country.deaths}</td>
-                    <td data-label="New Deaths">{country.todayDeaths}</td>
-                    <td data-label="Active Cases">{country.active}</td>
-                    <td data-label="Total Tests">
+                    <td data-label="New Deaths" className="mobile">
+                      {country.todayDeaths}
+                    </td>
+                    <td data-label="Active Cases" className="mobile">
+                      {country.active}
+                    </td>
+                    <td data-label="Total Tests" className="mobile">
                       {country.tests ? country.tests : "N/A"}
                     </td>
-                    <td data-label="Case/Test Ratio">
+                    <td data-label="Case/Test Ratio" className="mobile">
                       {country.tests
                         ? `${Math.round(
                             (country.cases / country.tests) * 100
                           )}%`
                         : "N/A"}
                     </td>
-                    <td data-label="Death Rate">{`${deathRate}%`}</td>
+                    <td
+                      data-label="Death Rate"
+                      className="mobile"
+                    >{`${deathRate}%`}</td>
                   </tr>
                 );
               })}
