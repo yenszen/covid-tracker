@@ -34,7 +34,7 @@ class CountriesList extends React.Component {
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={e => e.preventDefault()}>
           <div className="ui search">
             <div className="ui icon input">
               <input
