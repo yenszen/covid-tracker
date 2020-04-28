@@ -34,7 +34,7 @@ class CountriesList extends React.Component {
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={e => e.preventDefault()}>
           <div className="ui search">
             <div className="ui icon input">
               <input
@@ -81,19 +81,23 @@ class CountriesList extends React.Component {
                       />
                     </td>
 
-                    <td data-label="Total Cases">{country.cases}</td>
-                    <td data-label="New Cases" className="mobile">
-                      {country.todayCases}
+                    <td data-label="Total Cases">
+                      {country.cases.toLocaleString()}
                     </td>
-                    <td data-label="Total Deaths">{country.deaths}</td>
+                    <td data-label="New Cases" className="mobile">
+                      {country.todayCases.toLocaleString()}
+                    </td>
+                    <td data-label="Total Deaths">
+                      {country.deaths.toLocaleString()}
+                    </td>
                     <td data-label="New Deaths" className="mobile">
-                      {country.todayDeaths}
+                      {country.todayDeaths.toLocaleString()}
                     </td>
                     <td data-label="Active Cases" className="mobile">
-                      {country.active}
+                      {country.active.toLocaleString()}
                     </td>
                     <td data-label="Total Tests" className="mobile">
-                      {country.tests ? country.tests : "N/A"}
+                      {country.tests ? country.tests.toLocaleString() : "N/A"}
                     </td>
                     <td data-label="Case/Test Ratio" className="tablet">
                       {country.tests

@@ -1,0 +1,28 @@
+.my-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.my-header nav {
+  width: 35%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 800px) {
+  .my-header {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .my-header nav {
+    width: 100%;
+  }
+}
+
+.my-header nav .link-item {
+  font-size: 1.5rem;
+  color: #39ff14;
+}

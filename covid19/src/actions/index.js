@@ -27,7 +27,7 @@ export const fetchCountries = () => dispatch => {
 
 export const fetchOverall = () => dispatch => {
   return axios
-    .get("https://corona.lmao.ninja/all")
+    .get("https://corona.lmao.ninja/v2/all")
     .then(res => {
       console.log("fetchOverall", res);
       dispatch({ type: FETCH_OVERALL, payload: res.data });
