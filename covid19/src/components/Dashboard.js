@@ -13,12 +13,20 @@ class Dashboard extends React.Component {
 
   render() {
     if (!this.props.overall) {
-      return <div style={{ color: "white" }}>Loading...</div>;
+      return (
+        <div className="ui icon message">
+          <i className="notched circle loading icon"></i>
+          <div className="content">
+            <div className="header">Just one second</div>
+            <p>Fetching the latest data on Covid-19...</p>
+          </div>
+        </div>
+      );
     }
 
     return (
       <React.Fragment>
-        <h2 className="ui violet inverted header">Worldwide Stats</h2>
+        <h2 className="ui green inverted header">World Statistics</h2>
         <div
           className="ui inverted segment"
           style={{ margin: "2rem 0", textAlign: "center" }}
@@ -41,13 +49,13 @@ class Dashboard extends React.Component {
             </div>
             <div className="label">Total Active Cases</div>
           </div>
-          <div className="ui blue inverted statistic">
+          <div className="ui red inverted statistic">
             <div className="value">
               {this.props.overall.todayCases.toLocaleString()}
             </div>
             <div className="label">Total New Cases</div>
           </div>
-          <div className="ui red inverted statistic">
+          <div className="ui blue inverted statistic">
             <div className="value">
               {this.props.overall.todayDeaths.toLocaleString()}
             </div>
