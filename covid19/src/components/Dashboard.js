@@ -7,6 +7,10 @@ class Dashboard extends React.Component {
     this.props.fetchOverall();
   }
 
+  formatNumber = input => {
+    input.toLocaleString(navigator.language, { minimumFractionDigits: 0 });
+  };
+
   render() {
     if (!this.props.overall) {
       return <div style={{ color: "white" }}>Loading...</div>;
@@ -20,23 +24,33 @@ class Dashboard extends React.Component {
           style={{ margin: "2rem 0", textAlign: "center" }}
         >
           <div className="ui blue inverted statistic">
-            <div className="value">{this.props.overall.cases}</div>
+            <div className="value">
+              {this.props.overall.cases.toLocaleString()}
+            </div>
             <div className="label">Total Cases</div>
           </div>
           <div className="ui red inverted statistic">
-            <div className="value">{this.props.overall.deaths}</div>
+            <div className="value">
+              {this.props.overall.deaths.toLocaleString()}
+            </div>
             <div className="label">Total Deaths</div>
           </div>
           <div className="ui blue inverted statistic">
-            <div className="value">{this.props.overall.active}</div>
+            <div className="value">
+              {this.props.overall.active.toLocaleString()}
+            </div>
             <div className="label">Total Active Cases</div>
           </div>
           <div className="ui blue inverted statistic">
-            <div className="value">{this.props.overall.todayCases}</div>
+            <div className="value">
+              {this.props.overall.todayCases.toLocaleString()}
+            </div>
             <div className="label">Total New Cases</div>
           </div>
           <div className="ui red inverted statistic">
-            <div className="value">{this.props.overall.todayDeaths}</div>
+            <div className="value">
+              {this.props.overall.todayDeaths.toLocaleString()}
+            </div>
             <div className="label">Total New Deaths</div>
           </div>
         </div>
