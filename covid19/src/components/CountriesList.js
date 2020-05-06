@@ -60,7 +60,8 @@ class CountriesList extends React.Component {
               <th className="mobile">Active Cases</th>
               <th className="mobile">Total Tests</th>
               <th className="tablet">Case/Test Ratio</th>
-              <th className="tablet">Death Rate</th>
+              <th className="tablet">Crude Death Rate</th>
+              <th className="tablet">Resolved Death Rate</th>
             </tr>
           </thead>
 
@@ -69,6 +70,9 @@ class CountriesList extends React.Component {
               {this.state.searchResults.map(country => {
                 const deathRate = Math.round(
                   (country.deaths / country.cases) * 100
+                );
+                const reDeathRate = Math.round(
+                  (country.deaths / (country.cases - country.active)) * 100
                 );
                 return (
                   <tr key={country.countryInfo._id}>
@@ -107,9 +111,13 @@ class CountriesList extends React.Component {
                         : "N/A"}
                     </td>
                     <td
-                      data-label="Death Rate"
+                      data-label="Crude Death Rate"
                       className="tablet"
                     >{`${deathRate}%`}</td>
+                    <td
+                      data-label="Resolved Death Rate"
+                      className="tablet"
+                    >{`${reDeathRate}%`}</td>
                   </tr>
                 );
               })}
@@ -117,7 +125,7 @@ class CountriesList extends React.Component {
           ) : (
             <tbody>
               <tr>
-                <td colSpan="9">
+                <td colSpan="10">
                   <div className="ui icon message">
                     <i className="notched circle loading icon"></i>
                     <div className="content">
