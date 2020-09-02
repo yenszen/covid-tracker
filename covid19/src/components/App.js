@@ -28,7 +28,7 @@ const App = () => {
               country statistics
             </li>
             <li>
-              For mobile users : switch to landscape mode to view more info
+              For mobile users - switch to landscape mode to view more info
             </li>
           </ui>
         </div>
