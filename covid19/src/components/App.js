@@ -22,7 +22,7 @@ const App = () => {
 
         <div className="ui info message">
           <div className="header">Handy Tips</div>
-          <ui className="list">
+          <ul className="list">
             <li>
               Navigation on top right corner to alternate between overall and
               country statistics
@@ -30,7 +30,7 @@ const App = () => {
             <li>
               For mobile users - switch to landscape mode to view more info
             </li>
-          </ui>
+          </ul>
         </div>
         <Route exact path="/" component={Dashboard} />
         <Route path="/countries" component={CountriesList} />

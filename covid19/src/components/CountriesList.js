@@ -66,7 +66,7 @@ class CountriesList extends React.Component {
           </thead>
 
           {this.props.countries ? (
-            <tbody className="ui inverted black unstackable table">
+            <tbody className="ui unstackable table">
               {this.state.searchResults.map(country => {
                 const deathRate = Math.round(
                   (country.deaths / country.cases) * 100
