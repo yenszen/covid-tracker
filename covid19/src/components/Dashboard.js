@@ -7,7 +7,7 @@ class Dashboard extends React.Component {
     this.props.fetchOverall();
   }
 
-  formatNumber = input => {
+  formatNumber = (input) => {
     input.toLocaleString(navigator.language, { minimumFractionDigits: 0 });
   };
 
@@ -26,39 +26,41 @@ class Dashboard extends React.Component {
 
     return (
       <React.Fragment>
-        <h2 className="ui green inverted header">World Statistics</h2>
+        <h2 className="ui header" style={{ color: "#00CCFF" }}>
+          World Statistics
+        </h2>
         <div
-          className="ui inverted segment"
+          className="ui segments"
           style={{ margin: "2rem 0", textAlign: "center" }}
         >
-          <div className="ui blue inverted statistic">
-            <div className="value">
+          <div className="ui grey segment">
+            <h2 className="value">
               {this.props.overall.cases.toLocaleString()}
-            </div>
+            </h2>
             <div className="label">Total Cases</div>
           </div>
-          <div className="ui red inverted statistic">
-            <div className="value">
+          <div className="ui grey segment">
+            <h2 className="value">
               {this.props.overall.deaths.toLocaleString()}
-            </div>
+            </h2>
             <div className="label">Total Deaths</div>
           </div>
-          <div className="ui blue inverted statistic">
-            <div className="value">
+          <div className="ui grey segment">
+            <h2 className="value">
               {this.props.overall.active.toLocaleString()}
-            </div>
+            </h2>
             <div className="label">Total Active Cases</div>
           </div>
-          <div className="ui red inverted statistic">
-            <div className="value">
+          <div className="ui grey segment">
+            <h2 className="value">
               {this.props.overall.todayCases.toLocaleString()}
-            </div>
+            </h2>
             <div className="label">Total New Cases</div>
           </div>
-          <div className="ui blue inverted statistic">
-            <div className="value">
+          <div className="ui grey segment">
+            <h2 className="value">
               {this.props.overall.todayDeaths.toLocaleString()}
-            </div>
+            </h2>
             <div className="label">Total New Deaths</div>
           </div>
         </div>
@@ -67,7 +69,7 @@ class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { overall: state.overall };
 };
 
