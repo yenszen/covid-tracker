@@ -1,14 +1,14 @@
 import axios from "axios";
 import { FETCH_COUNTRIES, FETCH_OVERALL } from "./types";
 
-export const fetchCountries = () => dispatch => {
+export const fetchCountries = () => (dispatch) => {
   return axios
-    .get("https://corona.lmao.ninja/v2/countries/")
-    .then(res => {
+    .get("https://disease.sh/v3/covid-19/countries")
+    .then((res) => {
       console.log("fetchCountries", res);
 
       const filtered = res.data.filter(
-        country => country.country !== "Diamond Princess"
+        (country) => country.country !== "Diamond Princess"
       );
 
       const response = filtered.sort((a, b) => {
@@ -22,15 +22,15 @@ export const fetchCountries = () => dispatch => {
       });
       dispatch({ type: FETCH_COUNTRIES, payload: response });
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };
 
-export const fetchOverall = () => dispatch => {
+export const fetchOverall = () => (dispatch) => {
   return axios
-    .get("https://corona.lmao.ninja/v2/all")
-    .then(res => {
+    .get("https://disease.sh/v3/covid-19/all")
+    .then((res) => {
       console.log("fetchOverall", res);
       dispatch({ type: FETCH_OVERALL, payload: res.data });
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };
